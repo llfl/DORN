@@ -25,6 +25,7 @@ RUN apt-get clean && apt-get update && apt-get install -y \
       python-dev \
       ffmpeg \
       cmake \
+      libopencv-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN pip install opencv-python numpy==1.11 scipy==0.17
