@@ -28,8 +28,12 @@ RUN apt-get clean && apt-get update && apt-get install -y \
       libopencv-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install opencv-python numpy==1.11 scipy==0.17
+RUN pip install future opencv-python numpy==1.12 scipy==0.17 PyWavelets==0.5.2 Pillow==6.2.2 networkx==2.2 dask==1.2.2 cloudpickle==0.8.1 matplotlib==2.1.2 protobuf scikit-image==0.14 
 
 RUN git clone https://github.com/llfl/DORN && cd DORN
 
-RUN mkdir caffe_build && cd caffe_build && cmake ../caffe && make -j"$(nproc)"
+RUN mkdir caffe_build && cd caffe_build && cmake ../caffe && make -j"$(nproc)" && make install 
+
+ENV PYTHONPATH="/DORN/caffe/python:/DORN/caffe/pylayer:${PYTHONPATH}"
+
+CMD [ "/bin/bash" ]
