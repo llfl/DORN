@@ -32,7 +32,7 @@ RUN pip install future opencv-python numpy==1.12 scipy==0.17 PyWavelets==0.5.2 P
 
 RUN git clone https://github.com/llfl/DORN && cd DORN
 
-RUN mkdir caffe_build && cd caffe_build && cmake ../caffe && make -j"$(nproc)" && make install 
+RUN mkdir caffe_build && cd caffe_build && cmake /DORN/caffe && make -j"$(nproc)" && make install 
 
 ENV PYTHONPATH="/DORN/caffe/python:/DORN/caffe/pylayer:${PYTHONPATH}"
 
